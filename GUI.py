@@ -30,10 +30,10 @@ current_target = tk.StringVar(value="尚未辨識")
 left_frame = tk.Frame(root, width=350, bg="#ffffff", padx=20, pady=20)
 left_frame.pack(side="left", fill="y")
 
-tk.Label(left_frame, text="AI輸送帶方塊檢測系統", font=("Helvetica", 16, "bold"), bg="#ffffff").pack(pady=10)
+tk.Label(left_frame, text="AI輸送帶方塊檢測系統", font=("標楷體", 16, "bold"), bg="#ffffff").pack(pady=10)
 
 # 顯示辨識結果
-tk.Label(left_frame, textvariable=current_target, font=("Helvetica", 14), fg="#333", bg="#ffffff").pack(pady=15)
+tk.Label(left_frame, textvariable=current_target, font=("標楷體", 14), fg="#333", bg="#ffffff").pack(pady=15)
 
 # Whisper 語音辨識按鈕
 def whisper_voice_recognition():
@@ -72,7 +72,7 @@ dropdown.pack()
 dropdown.bind("<<ComboboxSelected>>", manual_select)
 
 # 資料統計
-tk.Label(left_frame, text="即時分類統計", font=("Helvetica", 12, "bold"), bg="#ffffff").pack(pady=10)
+tk.Label(left_frame, text="即時分類統計", font=("標楷體", 12, "bold"), bg="#ffffff").pack(pady=10)
 
 stat_labels = {
     "紅色": tk.StringVar(value="紅色：0"),
@@ -82,12 +82,12 @@ stat_labels = {
     "異物": tk.StringVar(value="異物：0"),
 }
 for key in stat_labels:
-    tk.Label(left_frame, textvariable=stat_labels[key], font=("Helvetica", 11), bg="#ffffff", anchor="w").pack(fill="x", pady=2)
+    tk.Label(left_frame, textvariable=stat_labels[key], font=("標楷體", 11), bg="#ffffff", anchor="w").pack(fill="x", pady=2)
 
 # 夾取次數
-tk.Label(left_frame, text="已夾取數量：", font=("Helvetica", 12), bg="#ffffff").pack(pady=(20, 0))
+tk.Label(left_frame, text="已夾取數量：", font=("標楷體", 12), bg="#ffffff").pack(pady=(20, 0))
 grab_count = tk.StringVar(value="0")
-tk.Label(left_frame, textvariable=grab_count, font=("Helvetica", 14), fg="#007acc", bg="#ffffff").pack()
+tk.Label(left_frame, textvariable=grab_count, font=("標楷體", 14), fg="#007acc", bg="#ffffff").pack()
 
 # ===== 右側畫面 =====
 right_frame = tk.Frame(root, width=640, height=480, bg="black")
@@ -154,7 +154,7 @@ class SortingGUI:
     def build_gui(self):
         style = ttk.Style()
         style.theme_use("default")
-        style.configure("TButton", font=("Helvetica", 10), padding=6)
+        style.configure("TButton", font=("標楷體", 10), padding=6)
         style.configure("TCombobox", padding=4)
 
         main_frame = tk.Frame(self.root, bg="#f9f9f9")
@@ -172,7 +172,7 @@ class SortingGUI:
         self.video_label.pack()
 
         # 分類統計
-        stats_frame = tk.LabelFrame(left_frame, text="📊 分類統計", font=("Helvetica", 12, "bold"), padx=10, pady=10, bg="white", fg="#333")
+        stats_frame = tk.LabelFrame(left_frame, text="📊 分類統計", font=("標楷體", 12, "bold"), padx=10, pady=10, bg="white", fg="#333")
         stats_frame.pack(pady=10, fill=tk.X)
 
         self.labels = {}
@@ -186,34 +186,34 @@ class SortingGUI:
         }
 
         for idx, (name, color) in enumerate(class_colors.items()):
-            lbl = tk.Label(stats_frame, text=f"{name}：0", font=("Helvetica", 11), fg=color, bg="white", anchor="w")
+            lbl = tk.Label(stats_frame, text=f"{name}：0", font=("標楷體", 11), fg=color, bg="white", anchor="w")
             lbl.grid(row=idx, column=0, sticky="w", pady=2)
             self.labels[name] = lbl
 
-        self.total_label = tk.Label(left_frame, text="📦 總處理數量：0", font=("Helvetica", 12, "bold"), bg="#f9f9f9", anchor="w")
+        self.total_label = tk.Label(left_frame, text="📦 總處理數量：0", font=("標楷體", 12, "bold"), bg="#f9f9f9", anchor="w")
         self.total_label.pack(pady=10, fill=tk.X)
 
         # 下拉選單
-        tk.Label(left_frame, text="🎯 請選擇要夾的目標：", font=("Helvetica", 12), bg="#f9f9f9").pack(pady=(10, 5), anchor="w")
+        tk.Label(left_frame, text="🎯 請選擇要夾的目標：", font=("標楷體", 12), bg="#f9f9f9").pack(pady=(10, 5), anchor="w")
         self.target_var = tk.StringVar(value="紅色方塊")
         options = list(self.class_counts.keys())
-        self.target_dropdown = ttk.Combobox(left_frame, textvariable=self.target_var, values=options, state="readonly", font=("Helvetica", 11))
+        self.target_dropdown = ttk.Combobox(left_frame, textvariable=self.target_var, values=options, state="readonly", font=("標楷體", 11))
         self.target_dropdown.pack(pady=5, fill=tk.X)
         self.target_dropdown.bind("<<ComboboxSelected>>", self.update_target)
 
         # 語音提示
-        self.voice_label = tk.Label(left_frame, text="🔈 語音提示：--", font=("Helvetica", 11), bg="#f9f9f9", wraplength=320, justify="left")
+        self.voice_label = tk.Label(left_frame, text="🔈 語音提示：--", font=("標楷體", 11), bg="#f9f9f9", wraplength=320, justify="left")
         self.voice_label.pack(pady=15, anchor="w")
 
         # 控制按鈕
         btn_frame = tk.Frame(left_frame, bg="#f9f9f9")
         btn_frame.pack(pady=10)
 
-        tk.Button(btn_frame, text="▶ 開始篩選", command=self.start_sorting, width=12, font=("Helvetica", 10), bg="#4CAF50", fg="white").grid(row=0, column=0, padx=5)
-        tk.Button(btn_frame, text="⏸ 暫停篩選", command=self.stop_sorting, width=12, font=("Helvetica", 10), bg="#f39c12", fg="white").grid(row=0, column=1, padx=5)
-        tk.Button(btn_frame, text="🔄 重置統計", command=self.reset_stats, width=12, font=("Helvetica", 10), bg="#e74c3c", fg="white").grid(row=0, column=2, padx=5)
+        tk.Button(btn_frame, text="▶ 開始篩選", command=self.start_sorting, width=12, font=("標楷體", 10), bg="#4CAF50", fg="white").grid(row=0, column=0, padx=5)
+        tk.Button(btn_frame, text="⏸ 暫停篩選", command=self.stop_sorting, width=12, font=("標楷體", 10), bg="#f39c12", fg="white").grid(row=0, column=1, padx=5)
+        tk.Button(btn_frame, text="🔄 重置統計", command=self.reset_stats, width=12, font=("標楷體", 10), bg="#e74c3c", fg="white").grid(row=0, column=2, padx=5)
 
-        self.status_bar = tk.Label(self.root, text="狀態：等待中", bd=1, relief=tk.SUNKEN, anchor=tk.W, font=("Helvetica", 10), bg="#eeeeee")
+        self.status_bar = tk.Label(self.root, text="狀態：等待中", bd=1, relief=tk.SUNKEN, anchor=tk.W, font=("標楷體", 10), bg="#eeeeee")
         self.status_bar.pack(side=tk.BOTTOM, fill=tk.X)
 
     def update_image(self):
